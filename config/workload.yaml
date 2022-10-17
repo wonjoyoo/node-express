@@ -1,0 +1,19 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: node-express
+  namespace: default
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/part-of: node-express
+    apps.tanzu.vmware.com/has-tests : "true"
+spec:
+  params:
+  - name : scanning_image_policy
+    value: node-scan-policy
+  source:
+    git:
+      ref:
+        branch: main
+      url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+    subPath: node-express
